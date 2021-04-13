@@ -1,11 +1,12 @@
 package myPkg;
 
-import java.util.Arrays;
 import java.util.Random;
 
 public class Mutacao {
 
     public static void mutacao() {
+        System.out.println();
+        System.out.println("MUTACAO.");
         Random rand = new Random();
 
         int qnt = rand.nextInt(Configurations.NUM_MUTACAO) + 1;
@@ -16,7 +17,8 @@ public class Mutacao {
             while (posicao1 == posicao2)
                 posicao2 = rand.nextInt(Configurations.SIZE);
 
-            System.out.println("VALOR ANTES DA MUTACAO:\t" + Arrays.toString(Populacao.getPopulacoes()[individuo]));
+            System.out.print("VALOR ANTES DA MUTACAO:\t\t");
+            Populacao.printCromossomo(individuo);
 
             int valor_posicao1 = Populacao.getPopulacoes()[individuo][posicao1];
             int valor_posicao2 = Populacao.getPopulacoes()[individuo][posicao2];
@@ -24,7 +26,10 @@ public class Mutacao {
             Populacao.setPopulacaoPosicao(individuo, posicao2, valor_posicao1);
             Populacao.setPopulacaoPosicao(individuo, posicao1, valor_posicao2);
 
-            System.out.println("VALOR DEPOIS DA MUTACAO:\t" + Arrays.toString(Populacao.getPopulacoes()[individuo]));
+            System.out.print("VALOR DEPOIS DA MUTACAO:\t");
+            Populacao.printCromossomo(individuo);
+
+            System.out.println();
         }
     }
 }

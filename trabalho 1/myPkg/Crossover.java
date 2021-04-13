@@ -31,12 +31,11 @@ public class Crossover {
 
         ind1 = rand.nextInt(Configurations.geracoes);
         ind2 = rand.nextInt(Configurations.geracoes);
-        while(ind1 == ind2)
+        while (ind1 == ind2)
             ind2 = rand.nextInt(Configurations.geracoes);
 
-        return Populacao.getPopulacoes()[ind1][Configurations.INDEX_APTIDAO] < Populacao.getPopulacoes()[ind2][Configurations.INDEX_APTIDAO]
-                ? ind1
-                : ind2;
+        return Populacao.getPopulacoes()[ind1][Configurations.INDEX_APTIDAO] < Populacao
+                .getPopulacoes()[ind2][Configurations.INDEX_APTIDAO] ? ind1 : ind2;
     }
 
     public static int[][] crossoverOX1Aux(int ind1, int ind2) {
@@ -62,9 +61,12 @@ public class Crossover {
 
         Arrays.fill(filho, -1);
 
+        System.out.println();
         System.out.println("FAIXA RANDOMIZADA:" + Arrays.toString(faixa));
-        System.out.println("CROMOSSOMO 1:" + Arrays.toString(cromossomo1));
-        System.out.println("CROMOSSOMO 2:" + Arrays.toString(cromossomo2));
+        System.out.print("CROMOSSOMO 1:");
+        Populacao.printCromossomo(ind1);
+        System.out.print("CROMOSSOMO 2:");
+        Populacao.printCromossomo(ind2);
 
         for (int i = faixa[0]; i <= faixa[1]; i++) {
             filho[i] = cromossomo1[i];
@@ -86,7 +88,12 @@ public class Crossover {
             }
             i++;
         }
-        System.out.println("FILHO GERADO:" + Arrays.toString(filho));
+        System.out.print("FILHO GERADO:");
+        for (int x = 0; x < filho.length - 1; x++) {
+            System.out.print(filho[x] + " ");
+        }
+        System.out.println();
+
         return filho;
     }
 

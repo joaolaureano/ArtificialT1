@@ -23,6 +23,12 @@ public class Populacao {
         return Populacao.populacoes;
     }
 
+    public static void printCromossomo(int individuo){
+        for(int i = 0; i < Configurations.SIZE; i++)
+            System.out.print(Populacao.populacoes[individuo][i] + " ");
+            System.out.println();
+
+    }
     public static int[][] setPopulacoes(int[][] newPopulacao) {
         return Populacao.populacoes = newPopulacao;
     }
