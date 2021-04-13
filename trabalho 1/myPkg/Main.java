@@ -7,18 +7,17 @@ import java.util.Collections;
 
 public class Main {
     private static Decoder dec = new Decoder();
-    private static String NAME_FILE = "/home/loreano/Desktop/auals/Artificial/trabalho 1/duplos/duplos4.txt";
+    private static String NAME_FILE = "/home/loreano/Desktop/auals/Artificial/ArtificialT1/trabalho 1/duplos/duplos10ideal.txt";
     private static int SIZE = dec.read_size(NAME_FILE);
     private static int[][] PREFERENCES = dec.read_preferences(NAME_FILE);
     private static int INDEX_APTIDAO = SIZE;
 
     private static int geracoes = 5;
-    private static int rodadas = 10;
+    private static int rodadas = 1;
     private static int[][] populacoes = new int[geracoes][SIZE + 1];
     private static int[][] intermediario = new int[geracoes][SIZE + 1];
 
     public static void main(String[] args) {
-        // System.out.println(Arrays.deepToString(PREFERENCES));
         init();
         int indexMelhor = 0;
         for (int x = 0; x < rodadas; x++) {
@@ -90,12 +89,12 @@ public class Main {
     }
 
     public static void calcularAptidao() {
-        for (int i = 0; i < populacoes.length; i++){
+        for (int i = 0; i < populacoes.length; i++) {
             int apt = 0;
-            for (int j = 0; j < SIZE; j++){
+            for (int j = 0; j < SIZE; j++) {
                 apt += aptidao(i, j);
             }
-            populacoes[i][INDEX_APTIDAO] = apt; 
+            populacoes[i][INDEX_APTIDAO] = apt;
         }
     }
 
@@ -105,11 +104,12 @@ public class Main {
             if (populacoes[i][INDEX_APTIDAO] < populacoes[melhor][INDEX_APTIDAO])
                 melhor = i;
         }
-        for (int i = 0; i < intermediario.length; i++)
+        for (int i = 0; i < intermediario[0].length; i++)
             intermediario[0][i] = populacoes[melhor][i];
 
         return melhor;
     }
+
     public static boolean verificarSolucao(int geracao) {
         if (populacoes[geracao][INDEX_APTIDAO] == 0) {
             System.out.println("\nAchou a solução ótima. Ela corresponde ao cromossomo : " + geracao);
@@ -151,10 +151,14 @@ public class Main {
         return populacoes[ind1][INDEX_APTIDAO] < populacoes[ind2][INDEX_APTIDAO] ? ind1 : ind2;
 
     }
-    public static int[] sorteiaIndices(){
-        Random rand = new Random();
 
-        int n_crossover = rand.nextInt(populacoes.length);
+    public static int[] sorteiaIndices() {
+        Random rand = new Random();
+        int max, min;
+        max = populacoes.length;
+        min = 1;
+
+        int n_crossover = rand.nextInt(max - min) + min;
 
         int[] index_sorteadas = new int[n_crossover];
         for (int i = 0; i < n_crossover; i++) {
@@ -163,18 +167,21 @@ public class Main {
         }
         return index_sorteadas;
     }
-    public static int[][] genesSorteados(int ind1, int ind2, int[] indices){
+
+    public static int[][] genesSorteados(int ind1, int ind2, int[] indices) {
         int[][] genes_sorteados = new int[2][indices.length];
-        for(int i = 0; i < indices.length; i++){
+        for (int i = 0; i < indices.length; i++) {
             genes_sorteados[0][i] = populacoes[ind1][indices[i]];
             genes_sorteados[1][i] = populacoes[ind2][indices[i]];
         }
 
         return genes_sorteados;
-    } 
+    }
+
     public static int[][] crossoverOBX(int ind1, int ind2) {
         int[] cromossomo1Original = populacoes[ind1];
         int[] cromossomo2Original = populacoes[ind2];
+
         System.out.println("ANTES");
         System.out.println(Arrays.toString(cromossomo1Original));
         System.out.println(Arrays.toString(cromossomo2Original));
@@ -183,47 +190,62 @@ public class Main {
         int[] cromossomo2Modificado = new int[SIZE + 1];
 
         int[] index_sorteadas = sorteiaIndices();
+        ArrayList<Integer> index_sorteadas_list = arrayToArrayList(index_sorteadas);
 
-        int[][] genes_sorteados = genesSorteados(ind1, ind2,index_sorteadas);
+        int[][] genes_sorteados = genesSorteados(ind1, ind2, index_sorteadas);
 
-        ArrayList<Integer> index_sorteadas_list = new ArrayList<Integer>();
-        for (int i : index_sorteadas)
-            index_sorteadas_list.add(i);
+        int[][] valoresNaoModificados = inserirValoresNaoSorteados(cromossomo1Original, cromossomo2Original,
+                index_sorteadas_list);
 
-        for (int i = 0; i < SIZE; i++) {
-            if (!index_sorteadas_list.contains(i)){
-            cromossomo1Modificado[i] = cromossomo1Original[i];
-            cromossomo2Modificado[i] = cromossomo2Original[i];
-            }
-        }
+        cromossomo1Modificado = valoresNaoModificados[0];
+        cromossomo2Modificado = valoresNaoModificados[1];
 
-        ArrayList<Integer> cromossomo1Original_list = new ArrayList<Integer>();
-        ArrayList<Integer> cromossomo2Original_list = new ArrayList<Integer>();
-
-        for (int i : cromossomo1Original)
-            cromossomo1Original_list.add(i);
-        for (int i : cromossomo2Original)
-            cromossomo2Original_list.add(i);
+        ArrayList<Integer> cromossomo1Original_list =
+        arrayToArrayList(cromossomo1Original);
+        ArrayList<Integer> cromossomo2Original_list =
+        arrayToArrayList(cromossomo2Original);
 
         for (int i = 0; i < index_sorteadas.length; i++) {
 
-            int novaPosicao1, novaPosicao2;
+        int novaPosicao1, novaPosicao2;
+        int valorArray1, valorArray2;
 
-            int valorArray1, valorArray2;
+        valorArray1 = genes_sorteados[0][i];
+        valorArray2 = genes_sorteados[1][i];
 
-            valorArray1 = genes_sorteados[0][i];
-            valorArray2 = genes_sorteados[1][i];
+        novaPosicao1 = cromossomo2Original_list.indexOf(valorArray1);
+        novaPosicao2 = cromossomo1Original_list.indexOf(valorArray2);
 
-            novaPosicao1 = cromossomo2Original_list.indexOf(valorArray1);
-            novaPosicao2 = cromossomo1Original_list.indexOf(valorArray2);
-
-            cromossomo1Modificado[novaPosicao1] = valorArray1;
-            cromossomo2Modificado[novaPosicao2] = valorArray2;
+        cromossomo1Modificado[novaPosicao1] = valorArray1;
+        cromossomo2Modificado[novaPosicao2] = valorArray2;
         }
         System.out.println("DEPOIS");
         System.out.println(Arrays.toString(cromossomo1Modificado));
         System.out.println(Arrays.toString(cromossomo2Modificado));
         int[][] resultado = { cromossomo1Modificado, cromossomo2Modificado };
         return resultado;
+    }
+
+    public static ArrayList<Integer> arrayToArrayList(int[] array) {
+        ArrayList<Integer> arrayList = new ArrayList<>();
+        for (int i : array)
+            arrayList.add(i);
+        return arrayList;
+    }
+
+    public static int[][] inserirValoresNaoSorteados(int[] cromossomo1, int[] cromossomo2,
+            ArrayList<Integer> index_sorteadas_list) {
+
+        int[] cromossomo1Modificado, cromossomo2Modificado;
+        cromossomo1Modificado = new int[cromossomo1.length];
+        cromossomo2Modificado = new int[cromossomo2.length];
+        for (int i = 0; i < SIZE; i++) {
+            if (!index_sorteadas_list.contains(i)) {
+                cromossomo1Modificado[i] = cromossomo1[i];
+                cromossomo2Modificado[i] = cromossomo2[i];
+            }
+        }
+        int[][] result = { cromossomo1Modificado, cromossomo2Modificado };
+        return result;
     }
 }
