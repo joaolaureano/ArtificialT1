@@ -1,4 +1,4 @@
-package myPkg;
+
 
 public class Configurations {
     private static Decoder dec = new Decoder();

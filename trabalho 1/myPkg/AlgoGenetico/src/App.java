@@ -1,8 +1,6 @@
-package myPkg;
 
 import java.util.Random;
-
-public class Main {
+public class App {
 
     public static int[][] intermediario = new int[Configurations.geracoes][Configurations.SIZE + 1];
 

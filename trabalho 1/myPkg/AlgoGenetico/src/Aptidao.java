@@ -1,4 +1,4 @@
-package myPkg;
+
 
 public class Aptidao {
     private static Decoder dec = new Decoder();

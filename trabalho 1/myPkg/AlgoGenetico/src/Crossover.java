@@ -1,4 +1,4 @@
-package myPkg;
+
 
 import java.util.Arrays;
 import java.util.Random;
@@ -15,11 +15,11 @@ public class Crossover {
 
             int[][] individuo_mescla = crossoverOX1Aux(ind1, ind2);
             for (int i = 0; i < Configurations.SIZE; i++) {
-                Main.intermediario[j][i] = individuo_mescla[0][i];
-                Main.intermediario[j + 1][i] = individuo_mescla[1][i];
+                App.intermediario[j][i] = individuo_mescla[0][i];
+                App.intermediario[j + 1][i] = individuo_mescla[1][i];
             }
-            Main.intermediario[j][Configurations.INDEX_APTIDAO] = 0;
-            Main.intermediario[j + 1][Configurations.INDEX_APTIDAO] = 0;
+            App.intermediario[j][Configurations.INDEX_APTIDAO] = 0;
+            App.intermediario[j + 1][Configurations.INDEX_APTIDAO] = 0;
         }
         return;
     }

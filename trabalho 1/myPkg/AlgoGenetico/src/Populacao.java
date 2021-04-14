@@ -1,4 +1,4 @@
-package myPkg;
+
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -54,8 +54,8 @@ public class Populacao {
                     .getPopulacoes()[melhor][Configurations.INDEX_APTIDAO])
                 melhor = i;
         }
-        for (int i = 0; i < Main.intermediario[0].length; i++)
-            Main.intermediario[0][i] = Populacao.getPopulacoes()[melhor][i];
+        for (int i = 0; i < App.intermediario[0].length; i++)
+            App.intermediario[0][i] = Populacao.getPopulacoes()[melhor][i];
 
         return melhor;
     }
