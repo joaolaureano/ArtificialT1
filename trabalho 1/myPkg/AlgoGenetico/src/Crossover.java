@@ -1,4 +1,4 @@
-
+package myPkg.AlgoGenetico.src;
 
 import java.util.Arrays;
 import java.util.Random;
@@ -16,9 +16,11 @@ public class Crossover {
             int[][] individuo_mescla = crossoverOX1Aux(ind1, ind2);
             for (int i = 0; i < Configurations.SIZE; i++) {
                 App.intermediario[j][i] = individuo_mescla[0][i];
+                if(j !=  App.intermediario.length - 1 )
                 App.intermediario[j + 1][i] = individuo_mescla[1][i];
             }
             App.intermediario[j][Configurations.INDEX_APTIDAO] = 0;
+            if(j != App.intermediario.length - 1 )
             App.intermediario[j + 1][Configurations.INDEX_APTIDAO] = 0;
         }
         return;
@@ -60,12 +62,11 @@ public class Crossover {
         int[] faixa = faixaCrossover();
 
         Arrays.fill(filho, -1);
-
-        System.out.println();
-        System.out.println("FAIXA RANDOMIZADA:" + Arrays.toString(faixa));
-        System.out.print("CROMOSSOMO 1:");
+        
+        Log.addToWhole_log("FAIXA RANDOMIZADA:" + Arrays.toString(faixa)+"\n", 1);
+        Log.addToWhole_log("CROMOSSOMO 1:", 1);
         Populacao.printCromossomo(ind1);
-        System.out.print("CROMOSSOMO 2:");
+        Log.addToWhole_log("CROMOSSOMO 2:", 1);
         Populacao.printCromossomo(ind2);
 
         for (int i = faixa[0]; i <= faixa[1]; i++) {
@@ -88,12 +89,11 @@ public class Crossover {
             }
             i++;
         }
-        System.out.print("FILHO GERADO:");
+        Log.addToWhole_log("FILHO GERADO:", 1);
         for (int x = 0; x < filho.length - 1; x++) {
-            System.out.print(filho[x] + " ");
+            Log.addToWhole_log(filho[x] + " ", 1);
         }
-        System.out.println();
-
+        Log.addToWhole_log("\n", 1);
         return filho;
     }
 

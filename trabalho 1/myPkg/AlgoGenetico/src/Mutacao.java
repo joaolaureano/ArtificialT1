@@ -1,12 +1,11 @@
-
+package myPkg.AlgoGenetico.src;
 
 import java.util.Random;
 
 public class Mutacao {
 
     public static void mutacao() {
-        System.out.println();
-        System.out.println("MUTACAO.");
+        Log.addToWhole_log("MUTACAO.\n" , 1);
         Random rand = new Random();
 
         int qnt = rand.nextInt(Configurations.NUM_MUTACAO) + 1;
@@ -17,7 +16,7 @@ public class Mutacao {
             while (posicao1 == posicao2)
                 posicao2 = rand.nextInt(Configurations.SIZE);
 
-            System.out.print("VALOR ANTES DA MUTACAO:\t\t");
+            Log.addToWhole_log("\nVALOR ANTES DA MUTACAO:\t\t", 1);
             Populacao.printCromossomo(individuo);
 
             int valor_posicao1 = Populacao.getPopulacoes()[individuo][posicao1];
@@ -26,10 +25,8 @@ public class Mutacao {
             Populacao.setPopulacaoPosicao(individuo, posicao2, valor_posicao1);
             Populacao.setPopulacaoPosicao(individuo, posicao1, valor_posicao2);
 
-            System.out.print("VALOR DEPOIS DA MUTACAO:\t");
+            Log.addToWhole_log("VALOR DEPOIS DA MUTACAO:\t" , 1);
             Populacao.printCromossomo(individuo);
-
-            System.out.println();
         }
     }
 }

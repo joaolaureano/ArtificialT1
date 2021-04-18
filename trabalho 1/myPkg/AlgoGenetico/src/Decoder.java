@@ -1,3 +1,4 @@
+package myPkg.AlgoGenetico.src;
 
 import java.io.File; // Import the File class
 import java.io.FileNotFoundException; // Import this class to handle errors
