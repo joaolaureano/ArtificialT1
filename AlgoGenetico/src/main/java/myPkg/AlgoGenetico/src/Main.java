@@ -67,7 +67,7 @@ public class Main extends JFrame {
         gbpanel0.setConstraints(geracoes_txt, gbcpanel0);
         panel0.add(geracoes_txt);
 
-        output_area = new JTextArea(2, 10);
+        output_area = new JTextArea(30, 10);
         JScrollPane scroll = new JScrollPane(output_area);
         gbcpanel0.gridx = 2;
         gbcpanel0.gridy = 19;
@@ -170,9 +170,7 @@ public class Main extends JFrame {
                 Configurations.NAME_FILE = j.getSelectedFile().getAbsolutePath();
                 Configurations.SIZE = new Decoder().read_size(Configurations.NAME_FILE);
                 Configurations.INDEX_APTIDAO = Configurations.SIZE;
-                System.out.println(Configurations.NAME_FILE);
-                System.out.println(Configurations.SIZE);
-                System.out.println(Configurations.INDEX_APTIDAO);
+                Configurations.NUM_MUTACAO = Configurations.SIZE / 2;
                 arquivo_lbl.setText(j.getSelectedFile().getName());
 
             }
