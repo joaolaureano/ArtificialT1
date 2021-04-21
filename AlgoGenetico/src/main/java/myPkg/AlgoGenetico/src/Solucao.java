@@ -1,4 +1,3 @@
-
 package myPkg.AlgoGenetico.src;
 
 public class Solucao {
