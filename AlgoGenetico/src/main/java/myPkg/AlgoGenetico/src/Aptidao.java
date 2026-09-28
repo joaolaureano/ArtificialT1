@@ -3,6 +3,10 @@ package myPkg.AlgoGenetico.src;
 public class Aptidao {
     private static int[][] PREFERENCES = new Decoder().read_preferences(Configurations.NAME_FILE);
 
+    public static void reload() {
+        PREFERENCES = new Decoder().read_preferences(Configurations.NAME_FILE);
+    }
+
     public static void calcularAptidao() {
         for (int i = 0; i < Populacao.getPopulacoes().length; i++) {
             int apt = 0;
@@ -14,8 +18,6 @@ public class Aptidao {
     }
 
     public static int aptidao(int individuo, int aluno_a) {
-        PREFERENCES = new Decoder().read_preferences(Configurations.NAME_FILE);
-        
         int aluno_b = Populacao.getPopulacoes()[individuo][aluno_a];
 
         int[] preferencia_a = PREFERENCES[aluno_a];

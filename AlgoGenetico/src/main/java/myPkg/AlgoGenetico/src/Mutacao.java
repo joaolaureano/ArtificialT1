@@ -10,7 +10,8 @@ public class Mutacao {
 
         int qnt = rand.nextInt(Configurations.NUM_MUTACAO) + 1;
         for (int i = 0; i < qnt; i++) {
-            int individuo = rand.nextInt(Configurations.geracoes);
+            // indice 0 guarda o melhor individuo (elitismo) e nao deve ser mutado
+            int individuo = 1 + rand.nextInt(Configurations.geracoes - 1);
             int posicao1 = rand.nextInt(Configurations.SIZE);
             int posicao2 = rand.nextInt(Configurations.SIZE);
             while (posicao1 == posicao2)

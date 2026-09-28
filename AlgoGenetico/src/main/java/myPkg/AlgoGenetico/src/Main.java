@@ -170,7 +170,8 @@ public class Main extends JFrame {
                 Configurations.NAME_FILE = j.getSelectedFile().getAbsolutePath();
                 Configurations.SIZE = new Decoder().read_size(Configurations.NAME_FILE);
                 Configurations.INDEX_APTIDAO = Configurations.SIZE;
-                Configurations.NUM_MUTACAO = Configurations.SIZE / 2;
+                Configurations.NUM_MUTACAO = Math.max(1, Configurations.SIZE / 2);
+                Aptidao.reload();
                 arquivo_lbl.setText(j.getSelectedFile().getName());
 
             }
