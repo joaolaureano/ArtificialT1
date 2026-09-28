@@ -65,10 +65,10 @@ incluído no repositório.
 
 ## Versões deste repositório
 
-- **[`v1.0-original`](../../tree/v1.0-original)** — cópia exata do estado
-  em que o trabalho foi entregue/desenvolvido originalmente na faculdade,
-  sem nenhuma alteração. Preservada como tag para fins de histórico e
-  para permitir comparação com a versão corrigida.
+- **[`original-version`](../../tree/original-version)** — cópia exata do
+  estado em que o trabalho foi entregue/desenvolvido originalmente na
+  faculdade, sem nenhuma alteração. Preservada como branch para fins de
+  histórico e para permitir comparação com a versão corrigida.
 - **Versão atual (este branch)** — mesma lógica e mesmo objetivo do
   trabalho original, porém com os bugs listados abaixo corrigidos.
 
