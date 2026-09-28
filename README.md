@@ -7,7 +7,7 @@ a *stable matching* problem, developed as a **college assignment**
 ("Trabalho 1" for an Artificial Intelligence course).
 
 - 📌 **Original version** (as submitted for the assignment, unmodified):
-  branch [`original-version`](../../tree/original-version)
+  tag [`V1`](../../tree/V1)
 - ✅ **Fixed version** (bugs found and corrected, see details below):
   this branch / the default branch of the repository
 

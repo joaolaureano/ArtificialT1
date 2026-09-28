@@ -66,9 +66,9 @@ file bundled in the repository.
 
 ## Versions in this repository
 
-- **[`original-version`](../../tree/original-version)** — exact copy of
+- **[`V1`](../../tree/V1)** — exact copy of
   the state the assignment was originally submitted/developed in at
-  college, with no changes at all. Preserved as a branch for history and
+  college, with no changes at all. Preserved as a tag for history and
   to allow comparison against the fixed version.
 - **Current version (this branch)** — same logic and goal as the
   original assignment, with the bugs listed below fixed.
