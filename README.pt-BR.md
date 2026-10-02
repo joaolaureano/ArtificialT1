@@ -1,6 +1,6 @@
 # ArtificialT1 — Algoritmo Genético para o Problema dos Casais Estáveis
 
-🇺🇸 [English version here](README.en.md)
+🇺🇸 [English version here](README.md)
 
 ## Sobre o projeto
 

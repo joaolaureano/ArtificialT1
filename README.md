@@ -1,6 +1,6 @@
 # ArtificialT1 — Genetic Algorithm for the Stable Matching Problem
 
-🇧🇷 [Versão em português aqui](README.pt.md)
+🇧🇷 [Versão em português aqui](README.pt-BR.md)
 
 ## About the project
 
